@@ -1,4 +1,8 @@
-import { Pool } from "pg";
+import { Pool, types } from "pg";
+
+// Parse BIGINT (int8) as integer (OID for BIGINT is 20)
+types.setTypeParser(20, (val) => parseInt(val, 10));
+
 
 const connectionString = process.env.POSTGRES_URI || process.env.DATABASE_URL;
 
